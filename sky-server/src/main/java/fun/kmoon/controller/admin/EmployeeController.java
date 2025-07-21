@@ -1,9 +1,9 @@
 package fun.kmoon.controller.admin;
 
-import fun.kmoon.dto.EmployeeDTO;
 import fun.kmoon.entity.Employee;
 import fun.kmoon.service.EmployeeService;
-import fun.kmoon.utils.Result;
+import fun.kmoon.result.Result;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping(value = "/employees")
 @Tag(name = "员工管理")
 @Slf4j
 public class EmployeeController {
@@ -32,6 +32,7 @@ public class EmployeeController {
     /**
      * 根据id查询员工
      */
+    @Operation(summary = "查询员工", description = "根据id查询员工信息")
     @GetMapping("/{id}")
     public Result<Employee> getById(@PathVariable Long id) {
         Employee employee = employeeService.getById(id);
@@ -42,8 +43,8 @@ public class EmployeeController {
      * 新增员工
      */
     @PostMapping
-    public Result<String> insert(@RequestBody EmployeeDTO employeeDTO) {
-        employeeService.insert(employeeDTO);
+    public Result<String> insert(@RequestBody Employee employee) {
+        employeeService.insert(employee);
         return Result.success("新增成功");
     }
 
@@ -51,8 +52,8 @@ public class EmployeeController {
      * 更新员工
      */
     @PutMapping("/{id}")
-    public Result<String> update(@PathVariable Long id, @RequestBody EmployeeDTO employeeDTO) {
-        employeeService.update(id, employeeDTO);
+    public Result<String> update(@PathVariable Long id, @RequestBody Employee employee) {
+        employeeService.update(id, employee);
         return Result.success("更新成功");
     }
 

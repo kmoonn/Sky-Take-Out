@@ -1,6 +1,5 @@
 package fun.kmoon.mapper;
 
-import fun.kmoon.dto.EmployeeDTO;
 import fun.kmoon.entity.Employee;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -23,12 +22,12 @@ public interface EmployeeMapper {
     /**
      * 新增员工
      */
-    void insert(EmployeeDTO employeeDTO);
+    void insert(Employee employee);
 
     /**
      * 更新员工
      */
-    void update(@Param("id") Long id, @Param("employeeDTO") EmployeeDTO employeeDTO);
+    void update(@Param("id") Long id, @Param("employee") Employee employee);
 
     /**
      * 删除员工

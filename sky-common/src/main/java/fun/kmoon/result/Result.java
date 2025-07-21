@@ -1,4 +1,4 @@
-package fun.kmoon.utils;
+package fun.kmoon.result;
 
 import lombok.Data;
 

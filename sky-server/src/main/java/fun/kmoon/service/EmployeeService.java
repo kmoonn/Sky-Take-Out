@@ -1,6 +1,5 @@
 package fun.kmoon.service;
 
-import fun.kmoon.dto.EmployeeDTO;
 import fun.kmoon.entity.Employee;
 
 import java.util.List;
@@ -20,12 +19,12 @@ public interface EmployeeService {
     /**
      * 新增员工
      */
-    void insert(EmployeeDTO employeeDTO);
+    void insert(Employee employee);
 
     /**
      * 更新员工
      */
-    void update(Long id, EmployeeDTO employeeDTO);
+    void update(Long id, Employee employee);
 
     /**
      * 删除员工

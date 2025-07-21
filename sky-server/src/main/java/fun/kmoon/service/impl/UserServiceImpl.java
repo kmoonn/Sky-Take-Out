@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User getUserById(Long id) {
-        return userMapper.getUserById(id);
+    public User getById(Long id) {
+        return userMapper.getById(id);
     }
 }

@@ -20,7 +20,7 @@
     </sql>
 
     <resultMap id="baseResultMap" type="Employee">
-        <result column="id" property="id"/>
+        <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
@@ -61,6 +61,10 @@
     <select id="getById" resultMap="baseResultMap" parameterType="long">
         <include refid="common" />
         WHERE id = #{id}
+    </select>
+    <select id="getByUsername" resultMap="baseResultMap">
+        <include refid="common" />
+        WHERE username = #{username}
     </select>
 
     <insert id="insert" parameterType="Employee">

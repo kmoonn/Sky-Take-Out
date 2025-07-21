@@ -2,6 +2,11 @@ package fun.kmoon.result;
 
 import lombok.Data;
 
+/**
+ * 统一响应结果
+ *
+ * @author kmoon
+ */
 @Data
 public class Result<T> {
     private int code;

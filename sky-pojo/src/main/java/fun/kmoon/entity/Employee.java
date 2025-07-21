@@ -1,12 +1,17 @@
 package fun.kmoon.entity;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 @Data
-public class Employee implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class Employee extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,24 +54,4 @@ public class Employee implements Serializable {
      * 状态
      */
     private Integer status;
-
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updateTime;
-
-    /**
-     * 创建人
-     */
-    private Long createUser;
-
-    /**
-     * 修改人
-     */
-    private Long updateUser;
 }

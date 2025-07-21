@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="fun.kmoon.mapper.UserMapper">
 
-    <select id="getUserById" resultType="fun.kmoon.entity.User" parameterType="long">
+    <select id="getById" resultType="fun.kmoon.entity.User" parameterType="long">
         SELECT * FROM user WHERE id = #{id}
     </select>
 

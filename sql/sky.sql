@@ -3,8 +3,8 @@ USE `sky-takeout`;
 
 DROP TABLE IF EXISTS `address_book`;
 CREATE TABLE `address_book` (
-                                `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-                                `user_id` bigint NOT NULL COMMENT '用户id',
+                                `address_id` bigint NOT NULL AUTO_INCREMENT COMMENT '地址ID',
+                                `user_id` bigint NOT NULL COMMENT '用户ID',
                                 `consignee` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '收货人',
                                 `sex` varchar(2) COLLATE utf8_bin DEFAULT NULL COMMENT '性别',
                                 `phone` varchar(11) COLLATE utf8_bin NOT NULL COMMENT '手机号',
@@ -17,12 +17,12 @@ CREATE TABLE `address_book` (
                                 `detail` varchar(200) CHARACTER SET utf8mb4  DEFAULT NULL COMMENT '详细地址',
                                 `label` varchar(100) CHARACTER SET utf8mb4  DEFAULT NULL COMMENT '标签',
                                 `is_default` tinyint(1) NOT NULL DEFAULT '0' COMMENT '默认 0 否 1是',
-                                PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='地址簿';
+                                PRIMARY KEY (`address_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='地址簿';
 
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
-                            `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+                            `category_id` bigint NOT NULL AUTO_INCREMENT COMMENT '分类ID',
                             `type` int DEFAULT NULL COMMENT '类型   1 菜品分类 2 套餐分类',
                             `name` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '分类名称',
                             `sort` int NOT NULL DEFAULT '0' COMMENT '顺序',
@@ -31,24 +31,24 @@ CREATE TABLE `category` (
                             `update_time` datetime DEFAULT NULL COMMENT '更新时间',
                             `create_user` bigint DEFAULT NULL COMMENT '创建人',
                             `update_user` bigint DEFAULT NULL COMMENT '修改人',
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`category_id`),
                             UNIQUE KEY `idx_category_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='菜品及套餐分类';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='菜品及套餐分类';
 
-INSERT INTO `category` VALUES (11,1,'酒水饮料',10,1,'2022-06-09 22:09:18','2022-06-09 22:09:18',1,1);
-INSERT INTO `category` VALUES (12,1,'传统主食',9,1,'2022-06-09 22:09:32','2022-06-09 22:18:53',1,1);
-INSERT INTO `category` VALUES (13,2,'人气套餐',12,1,'2022-06-09 22:11:38','2022-06-10 11:04:40',1,1);
-INSERT INTO `category` VALUES (15,2,'商务套餐',13,1,'2022-06-09 22:14:10','2022-06-10 11:04:48',1,1);
-INSERT INTO `category` VALUES (16,1,'蜀味烤鱼',4,1,'2022-06-09 22:15:37','2022-08-31 14:27:25',1,1);
-INSERT INTO `category` VALUES (17,1,'蜀味牛蛙',5,1,'2022-06-09 22:16:14','2022-08-31 14:39:44',1,1);
-INSERT INTO `category` VALUES (18,1,'特色蒸菜',6,1,'2022-06-09 22:17:42','2022-06-09 22:17:42',1,1);
-INSERT INTO `category` VALUES (19,1,'新鲜时蔬',7,1,'2022-06-09 22:18:12','2022-06-09 22:18:28',1,1);
-INSERT INTO `category` VALUES (20,1,'水煮鱼',8,1,'2022-06-09 22:22:29','2022-06-09 22:23:45',1,1);
-INSERT INTO `category` VALUES (21,1,'汤类',11,1,'2022-06-10 10:51:47','2022-06-10 10:51:47',1,1);
+INSERT INTO `category` VALUES (1,1,'酒水饮料',10,1,'2022-06-09 22:09:18','2022-06-09 22:09:18',1,1);
+INSERT INTO `category` VALUES (2,1,'传统主食',9,1,'2022-06-09 22:09:32','2022-06-09 22:18:53',1,1);
+INSERT INTO `category` VALUES (3,2,'人气套餐',1,1,'2022-06-09 22:11:38','2022-06-10 11:04:40',1,1);
+INSERT INTO `category` VALUES (5,2,'商务套餐',2,1,'2022-06-09 22:14:10','2022-06-10 11:04:48',1,1);
+INSERT INTO `category` VALUES (6,1,'蜀味烤鱼',4,1,'2022-06-09 22:15:37','2022-08-31 14:27:25',1,1);
+INSERT INTO `category` VALUES (7,1,'蜀味牛蛙',5,1,'2022-06-09 22:16:14','2022-08-31 14:39:44',1,1);
+INSERT INTO `category` VALUES (8,1,'特色蒸菜',6,1,'2022-06-09 22:17:42','2022-06-09 22:17:42',1,1);
+INSERT INTO `category` VALUES (9,1,'新鲜时蔬',7,1,'2022-06-09 22:18:12','2022-06-09 22:18:28',1,1);
+INSERT INTO `category` VALUES (10,1,'水煮鱼',8,1,'2022-06-09 22:22:29','2022-06-09 22:23:45',1,1);
+INSERT INTO `category` VALUES (11,1,'汤类',11,1,'2022-06-10 10:51:47','2022-06-10 10:51:47',1,1);
 
 DROP TABLE IF EXISTS `dish`;
 CREATE TABLE `dish` (
-                        `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+                        `dish_id` bigint NOT NULL AUTO_INCREMENT COMMENT '菜品ID',
                         `name` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '菜品名称',
                         `category_id` bigint NOT NULL COMMENT '菜品分类id',
                         `price` decimal(10,2) DEFAULT NULL COMMENT '菜品价格',
@@ -59,7 +59,7 @@ CREATE TABLE `dish` (
                         `update_time` datetime DEFAULT NULL COMMENT '更新时间',
                         `create_user` bigint DEFAULT NULL COMMENT '创建人',
                         `update_user` bigint DEFAULT NULL COMMENT '修改人',
-                        PRIMARY KEY (`id`),
+                        PRIMARY KEY (`dish_id`),
                         UNIQUE KEY `idx_dish_name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='菜品';
 
@@ -90,11 +90,11 @@ INSERT INTO `dish` VALUES (69,'平菇豆腐汤',21,6.00,'https://sky-itcast.oss-
 
 DROP TABLE IF EXISTS `dish_flavor`;
 CREATE TABLE `dish_flavor` (
-                               `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-                               `dish_id` bigint NOT NULL COMMENT '菜品',
+                               `flavor_id` bigint NOT NULL AUTO_INCREMENT COMMENT '口味ID',
+                               `dish_id` bigint NOT NULL COMMENT '菜品ID',
                                `name` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT '口味名称',
                                `value` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '口味数据list',
-                               PRIMARY KEY (`id`)
+                               PRIMARY KEY (`flavor_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='菜品口味关系表';
 
 INSERT INTO `dish_flavor` VALUES (40,10,'甜味','[\"无糖\",\"少糖\",\"半糖\",\"多糖\",\"全糖\"]');
@@ -124,7 +124,7 @@ INSERT INTO `dish_flavor` VALUES (103,65,'辣度','[\"不辣\",\"微辣\",\"中�
 
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
-                            `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+                            `employee_id` bigint NOT NULL AUTO_INCREMENT COMMENT '员工ID',
                             `name` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '姓名',
                             `username` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '用户名',
                             `password` varchar(64) COLLATE utf8_bin NOT NULL COMMENT '密码',
@@ -136,7 +136,7 @@ CREATE TABLE `employee` (
                             `update_time` datetime DEFAULT NULL COMMENT '更新时间',
                             `create_user` bigint DEFAULT NULL COMMENT '创建人',
                             `update_user` bigint DEFAULT NULL COMMENT '修改人',
-                            PRIMARY KEY (`id`),
+                            PRIMARY KEY (`employee_id`),
                             UNIQUE KEY `idx_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='员工信息';
 
@@ -144,7 +144,7 @@ INSERT INTO `employee` VALUES (1,'管理员','admin','123456','13812312312','1',
 
 DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail` (
-                                `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+                                `detail_id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
                                 `name` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT '名字',
                                 `image` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '图片',
                                 `order_id` bigint NOT NULL COMMENT '订单id',
@@ -153,12 +153,12 @@ CREATE TABLE `order_detail` (
                                 `dish_flavor` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '口味',
                                 `number` int NOT NULL DEFAULT '1' COMMENT '数量',
                                 `amount` decimal(10,2) NOT NULL COMMENT '金额',
-                                PRIMARY KEY (`id`)
+                                PRIMARY KEY (`detail_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='订单明细表';
 
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders` (
-                          `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+                          `order_id` bigint NOT NULL AUTO_INCREMENT COMMENT '订单ID',
                           `number` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '订单号',
                           `status` int NOT NULL DEFAULT '1' COMMENT '订单状态 1待付款 2待接单 3已接单 4派送中 5已完成 6已取消 7退款',
                           `user_id` bigint NOT NULL COMMENT '下单用户',
@@ -182,7 +182,7 @@ CREATE TABLE `orders` (
                           `pack_amount` int DEFAULT NULL COMMENT '打包费',
                           `tableware_number` int DEFAULT NULL COMMENT '餐具数量',
                           `tableware_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '餐具数量状态  1按餐量提供  0选择具体数量',
-                          PRIMARY KEY (`id`)
+                          PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='订单表';
 
 DROP TABLE IF EXISTS `setmeal`;
@@ -230,13 +230,13 @@ CREATE TABLE `shopping_cart` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-                        `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-                        `openid` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT '微信用户唯一标识',
+                        `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+                        `open_id` varchar(45) COLLATE utf8_bin DEFAULT NULL COMMENT '微信用户唯一标识',
                         `name` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT '姓名',
                         `phone` varchar(11) COLLATE utf8_bin DEFAULT NULL COMMENT '手机号',
                         `sex` varchar(2) COLLATE utf8_bin DEFAULT NULL COMMENT '性别',
                         `id_number` varchar(18) COLLATE utf8_bin DEFAULT NULL COMMENT '身份证号',
                         `avatar` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT '头像',
                         `create_time` datetime DEFAULT NULL,
-                        PRIMARY KEY (`id`)
+                        PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='用户信息';

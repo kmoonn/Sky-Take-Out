@@ -8,5 +8,5 @@
 | $$  \$$\| $$ | $$ | $$ \$$    $$ \$$    $$| $$  | $$
  \$$   \$$ \$$  \$$  \$$  \$$$$$$   \$$$$$$  \$$   \$$
 
-${application.name} ${application.version}
+${spring.application.name} ${spring.application.version}
 Spring Boot ${spring-boot.version}

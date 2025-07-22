@@ -1,5 +1,6 @@
 package fun.kmoon.service;
 
+import fun.kmoon.dto.EmployeeLoginDTO;
 import fun.kmoon.entity.Employee;
 
 import java.util.List;
@@ -15,6 +16,11 @@ public interface EmployeeService {
      * 根据id查询员工
      */
     Employee getById(Long id);
+
+    /**
+     * 条件查询员工
+     */
+    Employee select(Employee employee);
 
     /**
      * 新增员工

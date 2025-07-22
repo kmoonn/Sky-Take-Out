@@ -1,15 +1,13 @@
-application:
-  name: sky-take-out
-  version: 1.0.0
-  description: 苍穹外卖
-  author: kmoon
-
+# 应用配置
 spring:
+  application:
+    name: Sky-Take-Out
+    version: 1.0.0
   banner:
     charset: UTF-8
     location: classpath:banner.txt
   datasource:
-    url: jdbc:mysql://mysql2.sqlpub.com:3307/sky-takeout?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://mysql2.sqlpub.com:3307/sky-takeout?serverTimezone=UTC
     username: sky_takeout
     password: be95NFYr2LZxduhg
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,13 +19,9 @@ spring:
 #      database: 0
 #      timeout: 10000
 
+# mybatis
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: fun.kmoon.entity
   configuration:
     map-underscore-to-camel-case: true
-
-knife4j:
-  enable: true
-  setting:
-    language: zh_cn

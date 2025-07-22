@@ -1,7 +1,9 @@
 package fun.kmoon.service.impl;
 
 import fun.kmoon.constant.StatusConstant;
+import fun.kmoon.dto.EmployeeLoginDTO;
 import fun.kmoon.entity.Employee;
+import fun.kmoon.exception.PasswordErrorException;
 import fun.kmoon.mapper.EmployeeMapper;
 import fun.kmoon.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -34,11 +37,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     /**
+     * 条件查询员工
+     */
+    @Override
+    public Employee select(Employee employee) {
+        return employeeMapper.select(employee);
+    }
+
+    /**
      * 新增员工
      */
     @Override
     public void insert(Employee employee) {
-        employee.setStatus(StatusConstant.ENABLE);
         employee.setCreateUser(1L);
         employeeMapper.insert(employee);
     }

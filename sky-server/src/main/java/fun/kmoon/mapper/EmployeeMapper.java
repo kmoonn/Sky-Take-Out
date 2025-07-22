@@ -33,4 +33,9 @@ public interface EmployeeMapper {
      * 删除员工
      */
     void delete(Long id);
+
+    /**
+     * 条件查询员工
+     */
+    Employee select(Employee employee);
 }

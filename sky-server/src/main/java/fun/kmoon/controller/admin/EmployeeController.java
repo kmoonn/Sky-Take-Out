@@ -1,8 +1,8 @@
 package fun.kmoon.controller.admin;
 
 import fun.kmoon.entity.Employee;
-import fun.kmoon.service.EmployeeService;
 import fun.kmoon.result.Result;
+import fun.kmoon.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/employees")
+@RequestMapping(value = "/admin/employees")
 @Tag(name = "员工管理")
 @Slf4j
 public class EmployeeController {
@@ -23,6 +23,7 @@ public class EmployeeController {
     /**
      * 查询员工列表
      */
+    @Operation(summary = "查询员工列表", description = "根据条件查询员工列表")
     @GetMapping("/list")
     public Result<List<Employee>> list(Employee employee) {
         List<Employee> employees = employeeService.list(employee);
@@ -42,6 +43,7 @@ public class EmployeeController {
     /**
      * 新增员工
      */
+    @Operation(summary = "新增员工", description = "根据员工信息新增员工")
     @PostMapping
     public Result<String> insert(@RequestBody Employee employee) {
         employeeService.insert(employee);
@@ -51,6 +53,7 @@ public class EmployeeController {
     /**
      * 更新员工
      */
+    @Operation(summary = "更新员工", description = "根据id和员工信息更新员工")
     @PutMapping("/{id}")
     public Result<String> update(@PathVariable Long id, @RequestBody Employee employee) {
         employeeService.update(id, employee);
@@ -60,6 +63,7 @@ public class EmployeeController {
     /**
      * 删除员工
      */
+    @Operation(summary = "删除员工", description = "根据id删除员工")
     @DeleteMapping("/{id}")
     public Result<String> delete(@PathVariable Long id) {
         employeeService.delete(id);

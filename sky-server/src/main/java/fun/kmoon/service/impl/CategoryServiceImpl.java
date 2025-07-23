@@ -18,15 +18,23 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryMapper categoryMapper;
 
     /**
-     * 查询员工列表
+     * 查询分类列表
      */
     @Override
     public List<Category> list(Category category) {
         return categoryMapper.list(category);
     }
+    
+    /**
+     * 分页查询分类列表
+     */
+    @Override
+    public List<Category> list(Category category, Integer page, Integer pageSize) {
+        return categoryMapper.listPage(category, page, pageSize);
+    }
 
     /**
-     * 根据id查询员工
+     * 根据id查询分类
      */
     @Override
     public Category getById(Long id) {
@@ -34,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     /**
-     * 新增员工
+     * 新增分类
      */
     @Override
     public void insert(Category category) {
@@ -44,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     /**
-     * 更新员工
+     * 更新分类
      */
     @Override
     public void update(Long id, Category category) {
@@ -53,7 +61,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     /**
-     * 删除员工
+     * 删除分类
      */
     @Override
     public void delete(Long id) {

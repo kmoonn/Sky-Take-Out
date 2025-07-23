@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class Category extends BaseEntity{
 
-    private Long id;
+    private Long categoryId;
 
     private Integer type;
 

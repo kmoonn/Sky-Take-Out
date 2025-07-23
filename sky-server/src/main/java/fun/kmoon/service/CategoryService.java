@@ -12,6 +12,11 @@ public interface CategoryService {
     List<Category> list(Category category);
 
     /**
+     * 分页查询分类列表
+     */
+    List<Category> list(Category category, Integer page, Integer pageSize);
+
+    /**
      * 根据id查询分类
      */
     Category getById(Long id);

@@ -15,7 +15,6 @@
     <packaging>pom</packaging>
     <description>苍穹外卖</description>
 
-    <!-- 子模块 -->
     <modules>
         <module>sky-pojo</module>
         <module>sky-common</module>
@@ -31,9 +30,17 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <lombok.version>1.18.38</lombok.version>
         <knife4j.version>4.5.0</knife4j.version>
-        <mybatis-spring-boot.version>3.0.3</mybatis-spring-boot.version>
+        <mybatis-spring.version>3.0.3</mybatis-spring.version>
         <jwt.version>0.9.1</jwt.version>
-        <mysql.version>8.0.33</mysql.version>
+        <mysql.version>9.2.0</mysql.version>
+        <fastjson.version>1.2.76</fastjson.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <druid.version>1.2.1</druid.version>
+        <pagehelper.version>1.3.0</pagehelper.version>
+        <aliyun-sdk-oss.version>3.10.2</aliyun-sdk-oss.version>
+        <aspectj.version>1.9.4</aspectj.version>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <poi.version>3.16</poi.version>
     </properties>
 
     <!-- 统一版本管理 -->
@@ -47,12 +54,17 @@
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis-spring-boot.version}</version>
+                <version>${mybatis-spring.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.mysql</groupId>
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>

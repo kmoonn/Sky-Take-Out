@@ -17,9 +17,9 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 用户ID
      */
-    private Long id;
+    private Long userId;
 
     /**
      * 微信用户唯一标识

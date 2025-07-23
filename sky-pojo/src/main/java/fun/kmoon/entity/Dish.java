@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 public class Dish extends BaseEntity implements Serializable {
 
-    private Long id;
+    private Long dishId;
 
     private String name;
 

@@ -19,7 +19,7 @@ public class Setmeal implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Long setmealId;
 
     //分类id
     private Long categoryId;

@@ -37,7 +37,7 @@ public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Long orderId;
 
     //订单号
     private String number;

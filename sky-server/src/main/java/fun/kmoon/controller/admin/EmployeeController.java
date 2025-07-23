@@ -34,9 +34,9 @@ public class EmployeeController {
      * 根据id查询员工
      */
     @Operation(summary = "查询员工", description = "根据id查询员工信息")
-    @GetMapping("/{id}")
-    public Result<Employee> getById(@PathVariable Long id) {
-        Employee employee = employeeService.getById(id);
+    @GetMapping("/{employeeId}")
+    public Result<Employee> getById(@PathVariable Long employeeId) {
+        Employee employee = employeeService.getById(employeeId);
         return Result.success(employee);
     }
 
@@ -47,26 +47,26 @@ public class EmployeeController {
     @PostMapping
     public Result<String> insert(@RequestBody Employee employee) {
         employeeService.insert(employee);
-        return Result.success("新增成功");
+        return Result.success();
     }
 
     /**
      * 更新员工
      */
     @Operation(summary = "更新员工", description = "根据id和员工信息更新员工")
-    @PutMapping("/{id}")
-    public Result<String> update(@PathVariable Long id, @RequestBody Employee employee) {
-        employeeService.update(id, employee);
-        return Result.success("更新成功");
+    @PutMapping("/{employeeId}")
+    public Result<String> update(@PathVariable Long employeeId, @RequestBody Employee employee) {
+        employeeService.update(employeeId, employee);
+        return Result.success();
     }
 
     /**
      * 删除员工
      */
     @Operation(summary = "删除员工", description = "根据id删除员工")
-    @DeleteMapping("/{id}")
-    public Result<String> delete(@PathVariable Long id) {
-        employeeService.delete(id);
-        return Result.success("删除成功");
+    @DeleteMapping("/{employeeId}")
+    public Result<String> delete(@PathVariable Long employeeId) {
+        employeeService.delete(employeeId);
+        return Result.success();
     }
 }

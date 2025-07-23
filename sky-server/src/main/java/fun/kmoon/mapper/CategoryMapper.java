@@ -15,6 +15,11 @@ public interface CategoryMapper {
     List<Category> list(Category category);
 
     /**
+     * 分页查询分类列表
+     */
+    List<Category> listPage(@Param("category") Category category, @Param("page") Integer page, @Param("pageSize") Integer pageSize);
+
+    /**
      * 根据id查询分类
      */
     Category getById(Long id);
@@ -27,7 +32,7 @@ public interface CategoryMapper {
     /**
      * 更新分类
      */
-    void update(@Param("id") Long id, @Param("category") Category category);
+    void update(@Param("categoryId") Long categoryId, @Param("category") Category category);
 
     /**
      * 删除分类

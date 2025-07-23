@@ -4,7 +4,7 @@
 <mapper namespace="fun.kmoon.mapper.EmployeeMapper">
 
     <sql id="common">
-        select id,
+        select employee_id,
                name,
                username,
                password,
@@ -20,7 +20,7 @@
     </sql>
 
     <resultMap id="baseResultMap" type="Employee">
-        <id column="id" property="id"/>
+        <id column="employee_id" property="employeeId"/>
         <result column="name" property="name"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
@@ -84,7 +84,7 @@
 
     <select id="getById" resultMap="baseResultMap" parameterType="long">
         <include refid="common" />
-        WHERE id = #{id}
+        WHERE employee_id = #{employeeId}
     </select>
 
     <insert id="insert" parameterType="Employee">
@@ -141,41 +141,41 @@
         </trim>
     </insert>
 
-    <update id="update" parameterType="Employee">
+    <update id="update">
         UPDATE employee
         <set>
-            <if test="name!= null and name!= ''">
-                name = #{name},
+            <if test="employee.name!= null and employee.name!= ''">
+                name = #{employee.name},
             </if>
-            <if test="username!= null and username!= ''">
-                username = #{username},
+            <if test="employee.username!= null and employee.username!= ''">
+                username = #{employee.username},
             </if>
-            <if test="password!= null and password!= ''">
-                password = #{password},
+            <if test="employee.password!= null and employee.password!= ''">
+                password = #{employee.password},
             </if>
-            <if test="phone!= null and phone!= ''">
-                phone = #{phone},
+            <if test="employee.phone!= null and employee.phone!= ''">
+                phone = #{employee.phone},
             </if>
-            <if test="sex!= null">
-                sex = #{sex},
+            <if test="employee.sex!= null">
+                sex = #{employee.sex},
             </if>
-            <if test="idNumber!= null and idNumber!= ''">
-                id_number = #{idNumber},
+            <if test="employee.idNumber!= null and employee.idNumber!= ''">
+                id_number = #{employee.idNumber},
             </if>
-            <if test="status!= null and status!= ''">
-                status = #{status},
+            <if test="employee.status!= null and employee.status!= ''">
+                status = #{employee.status},
             </if>
             update_time = NOW(),
-            <if test="updateUser!= null and updateUser!= ''">
-                update_user = #{updateUser}
+            <if test="employee.updateUser!= null and employee.updateUser!= ''">
+                update_user = #{employee.updateUser}
             </if>
         </set>
         <where>
-            id = #{id}
+            employee_id = #{employeeId}
         </where>
     </update>
 
     <delete id="delete" parameterType="long">
-        DELETE FROM employee WHERE id = #{id}
+        DELETE FROM employee WHERE employee_id = #{employeeId}
     </delete>
 </mapper>

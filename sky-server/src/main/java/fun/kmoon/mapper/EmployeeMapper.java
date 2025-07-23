@@ -27,7 +27,7 @@ public interface EmployeeMapper {
     /**
      * 更新员工
      */
-    void update(@Param("id") Long id, @Param("employee") Employee employee);
+    void update(@Param("employeeId") Long employeeId, @Param("employee") Employee employee);
 
     /**
      * 删除员工

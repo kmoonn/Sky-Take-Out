@@ -18,7 +18,7 @@ public class Employee extends BaseEntity implements Serializable {
     /**
      * 主键
      */
-    private Long id;
+    private Long employeeId;
 
     /**
      * 姓名

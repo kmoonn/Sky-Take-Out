@@ -18,9 +18,10 @@ public class DishFlavor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    //口味ID
+    private Long flavorId;
 
-    //菜品id
+    //菜品ID
     private Long dishId;
 
     //口味名称

@@ -31,12 +31,24 @@ public class CategoryController {
     }
 
     /**
+     * 分页查询分类列表
+     */
+    @Operation(summary = "分页查询分类列表", description = "根据条件分页查询分类列表")
+    @GetMapping("/list/page")
+    public Result<List<Category>> list(Category category,
+                                       @RequestParam(defaultValue = "1") Integer page,
+                                       @RequestParam(defaultValue = "10") Integer pageSize) {
+        List<Category> categories = categoryService.list(category, page, pageSize);
+        return Result.success(categories);
+    }
+
+    /**
      * 根据id查询分类
      */
     @Operation(summary = "查询分类", description = "根据id查询分类信息")
-    @GetMapping("/{id}")
-    public Result<Category> getById(@PathVariable Long id) {
-        Category category = categoryService.getById(id);
+    @GetMapping("/{categoryId}")
+    public Result<Category> getById(@PathVariable Long categoryId) {
+        Category category = categoryService.getById(categoryId);
         return Result.success(category);
     }
 
@@ -47,26 +59,26 @@ public class CategoryController {
     @PostMapping
     public Result<String> insert(@RequestBody Category category) {
         categoryService.insert(category);
-        return Result.success("新增成功");
+        return Result.success();
     }
 
     /**
      * 更新分类
      */
     @Operation(summary = "更新分类", description = "根据id和分类信息更新分类")
-    @PutMapping("/{id}")
-    public Result<String> update(@PathVariable Long id, @RequestBody Category category) {
-        categoryService.update(id, category);
-        return Result.success("更新成功");
+    @PutMapping("/{categoryId}")
+    public Result<String> update(@PathVariable Long categoryId, @RequestBody Category category) {
+        categoryService.update(categoryId, category);
+        return Result.success();
     }
 
     /**
      * 删除分类
      */
     @Operation(summary = "删除分类", description = "根据id删除分类")
-    @DeleteMapping("/{id}")
-    public Result<String> delete(@PathVariable Long id) {
-        categoryService.delete(id);
-        return Result.success("删除成功");
+    @DeleteMapping("/{categoryId}")
+    public Result<String> delete(@PathVariable Long categoryId) {
+        categoryService.delete(categoryId);
+        return Result.success();
     }
 }

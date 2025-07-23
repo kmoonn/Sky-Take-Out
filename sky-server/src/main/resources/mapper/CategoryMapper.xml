@@ -4,7 +4,7 @@
 <mapper namespace="fun.kmoon.mapper.CategoryMapper">
 
     <sql id="common">
-        select id,
+        select category_id,
                type,
                name,
                sort,
@@ -17,7 +17,7 @@
     </sql>
 
     <resultMap id="baseResultMap" type="Category">
-        <id column="id" property="id"/>
+        <id column="category_id" property="categoryId"/>
         <result column="type" property="type"/>
         <result column="name" property="name"/>
         <result column="sort" property="sort"/>
@@ -46,9 +46,29 @@
         </where>
     </select>
 
+    <select id="listPage" resultMap="baseResultMap">
+        <include refid="common"/>
+        <where>
+            <if test="category.type != null">
+                AND type = #{category.type}
+            </if>
+            <if test="category.name != null and category.name != ''">
+                AND name LIKE CONCAT('%', #{category.name}, '%')
+            </if>
+            <if test="category.sort != null">
+                AND sort = #{category.sort}
+            </if>
+            <if test="category.status != null">
+                AND status = #{category.status}
+            </if>
+        </where>
+        ORDER BY sort ASC
+        LIMIT #{page}, #{pageSize}
+    </select>
+
     <select id="getById" resultMap="baseResultMap" parameterType="long">
         <include refid="common" />
-        WHERE id = #{id}
+        WHERE category_id = #{categoryId}
     </select>
 
     <insert id="insert" parameterType="Category">
@@ -87,32 +107,30 @@
         </trim>
     </insert>
 
-    <update id="update" parameterType="Category">
+    <update id="update">
         UPDATE category
         <set>
-            <if test="type!= null">
-                type = #{type},
+            <if test="category.type != null">
+                type = #{category.type},
             </if>
-            <if test="name!= null and name!= ''">
-                name = #{name},
+            <if test="category.name != null and category.name != ''">
+                name = #{category.name},
             </if>
-            <if test="sort!= null">
-                sort = #{sort},
+            <if test="category.sort != null">
+                sort = #{category.sort},
             </if>
-            <if test="status!= null and status!= ''">
-                status = #{status},
+            <if test="category.status != null and category.status != ''">
+                status = #{category.status},
             </if>
-            update_time = NOW(),
-            <if test="updateUser!= null and updateUser!= ''">
-                update_user = #{updateUser}
+            <if test="category.updateUser != null and category.updateUser != ''">
+                update_user = #{category.updateUser},
             </if>
+            update_time = NOW()
         </set>
-        <where>
-            id = #{id}
-        </where>
+        WHERE category_id = #{categoryId}
     </update>
 
     <delete id="delete" parameterType="long">
-        DELETE FROM category WHERE id = #{id}
+        DELETE FROM category WHERE category_id = #{categoryId}
     </delete>
 </mapper>

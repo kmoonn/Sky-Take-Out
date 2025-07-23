@@ -20,7 +20,7 @@ public class ShoppingCart implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Long cartId;
 
     //名称
     private String name;
